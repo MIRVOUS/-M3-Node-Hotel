@@ -1,0 +1,63 @@
+{{> navbar_admin}}
+<br><br><br>
+<div class="container-fluid">
+  <h2 class="text-secondary">Informasi Hotel</h2>
+  <button type="button" class="btn btn-primary float-right mb-2" data-toggle="modal" data-target="#myModal">Tambah</button>
+  <table class="table table-hover">
+    <thead class="thead-light text-center">
+      <tr>
+        <th scope="col">Nama</th>
+        <th scope="col">Alamat</th>
+        <th scope="col">Kontak</th>
+        <th scope="col">Opsi</th>
+      </tr>
+    </thead>
+    {{#each items}}
+    <tbody class="text-center">
+      <tr>
+        <td scope="row">{{this.nama}}</td>
+        <td>{{this.alamat}}</td>
+        <td>{{this.kontak}}</td>
+        <td><a href="/admin/kelhotel/{{this._id}}" class="btn btn-warning">Ubah</a>
+        <a href="/admin/hapus/kelhotel/{{this._id}}" class="btn btn-danger" onclick="return confirm('Yakin Hapus Data?');">Hapus</a>
+        </td>
+      </tr>
+    </tbody>
+    {{/ each}}
+  </table>
+</div>
+
+
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <h4 class="modal-title">Kelola Hotel</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+
+      <div class="modal-body">
+        <form action="/admin/ubah/hotel" method="post">
+          <input type="hidden" name="_id">
+          <div class="form-group">
+            <input type="text" name="nama" class="form-control" placeholder="nama hotel...">
+          </div>
+          <div class="form-group">
+            <input type="text" name="alamat" class="form-control" placeholder="alamat hotel...">
+          </div>
+          <div class="form-group">
+            <input type="text" name="kontak" class="form-control" placeholder="kontak hotel...">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary float-right">Simpan</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

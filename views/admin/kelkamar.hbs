@@ -1,0 +1,67 @@
+{{> navbar_admin}}
+<br><br><br>
+<div class="container-fluid">
+  <h2 class="text-secondary">Informasi Kamar</h2>
+<button type="button" class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#myModal">Tambah</button>
+<table class="table table-hover">
+  <thead class="thead-light text-center">
+    <tr>
+      <th scope="col">No. Kamar</th>
+      <th scope="col">Jumlah Tempat Tidur</th>
+      <th scope="col">Fasilitas Kamar</th>
+      <th scope="col">Harga / Hari</th>
+      <th scope="col">Opsi</th>
+    </tr>
+  </thead>
+  {{#each items}}
+  <tbody class="text-center">
+    <tr>
+      <td scope="row">{{this.no}}</td>
+      <td>{{this.jumlah_kasur}}</td>
+      <td>{{this.fasilitas_kamar}}</td>
+      <td>Rp.{{this.harga}}</td>
+      <td><a href="/admin/kelkamar/{{this._id}}" class="btn btn-warning">Ubah</a>
+      <a href="/admin/hapus/kelkamar/{{this._id}}" class="btn btn-danger" onclick="return confirm('Yakin Hapus Data?');">Hapus</a></td>
+    </tr>
+  </tbody>
+  {{/ each}}
+</table>
+</div>
+
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <div class="modal-header">
+        <h4 class="modal-title">Kelola Kamar</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+
+      <div class="modal-body">
+        <form action="/admin/ubah/kamar" method="post">
+          <input type="hidden" name="_id">
+          <div class="form-group">
+            <input type="text" name="no" class="form-control" placeholder="nomor kamar...">
+          </div>
+          <div class="form-group">
+            <input type="number" name="jumlah_kasur" class="form-control" placeholder="jumlah Tempat Tidur...">
+          </div>
+          <div class="form-group">
+            <input type="text" name="fasilitas_kamar" class="form-control" placeholder="fasilitas Kamar...">
+          </div>
+          <div class="form-group">
+            <input type="text" name="harga" class="form-control" placeholder="harga Kamar...">
+          </div>
+          
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary float-right">Simpan</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
